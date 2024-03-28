@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing speed tester</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="head">
+        <h1>Test Your Typing Speed</h1>
+    </header>
+            <div class="text-heading">
+                <p>This is a typing speed tester. Your goal is to duplicate the provided text, EXACTLY, in the field below. The timer starts when you start typing and only stops when you match the whole text exactly. GOOD LUCK!</p>
+            </div>
+            <div class="container">
+            <div id="text-sample">
+                <p>Click To Change The Text</p>
+                <button id="button2">Change Text</button>
+            </div>
+            <div class="input">
+                <textarea id="textarea" cols="50" rows="10" placeholder="The clock starts when you start typing."></textarea>
+            </div>
+            <div class="meta">
+            <div class="timer">
+                <p id="time">00:00:00</p>
+            </div>
+            <div class="button">
+                <button id="button">Start Over</button>
+            </div>
+            </div>
+            <div class="result">
+                <p>TEST ANALYSIS</p>
+                <div id="box">
+                    <p id="words">Words Per Minute: 0</p>
+                    <p id="char">Characters Per Minute: 0</p>
+                    <p id="error">Errors: 0</p>
+                    <p id="accuracy">Accuracy: 0</p>
+                </div>
+                <p id="er">*Errors are the count for all the number of keypresses when the status indicator is orange, meaning the backpresses pressed to reach the error character are also errors.</p>
+            </div>
+            </div>
+</body>
+</html>
