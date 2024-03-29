@@ -14,8 +14,6 @@ class Cars(Turtle):
         self.penup()
         self.goto(280, random.randint(-230, 250))
 
-    def increase_speed(self):
-        self.x_move += 8
     def move(self):
         self.goto(self.xcor()-self.x_move, self.ycor())
 

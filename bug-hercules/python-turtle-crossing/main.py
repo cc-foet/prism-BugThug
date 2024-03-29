@@ -33,11 +33,6 @@ while game_is_on:
             scoreboard.game_over()
             break
         car.move()
-    if player.ycor() > 260:
-        player.next_level()
-        scoreboard.update_level()
-        for car in all_cars:
-            car.increase_speed()
 
     time.sleep(0.1)
     screen.update()

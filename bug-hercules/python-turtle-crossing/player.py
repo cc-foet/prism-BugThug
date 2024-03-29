@@ -12,6 +12,3 @@ class Player(Turtle):
 
     def up(self):
         self.forward(20)
-
-    def next_level(self):
-        self.goto(0, -270)
