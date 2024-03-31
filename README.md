@@ -34,7 +34,7 @@ To see what needs to be fixed or changed or added in those projects, open the *I
 4. After making changes, don’t forget to commit with the sign-off flag (-s)! (It should include your name)
    - git commit -s -m "my commit message w/signoff"
 6. Once all the changes have been committed, push the changes.
-   - git push origin <branch-name>
+   - git push origin <(branch-name)>
 7. Then create a pull request
 
 ## Code of Conduct - 
