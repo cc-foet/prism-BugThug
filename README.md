@@ -24,7 +24,7 @@ There are a total of **9 questions** in the Senior Section, comprising of
 - *2 hard level* questions
 
 ## How to go about the competition?
-The projects/files which are needed to be worked on have been uploaded to the respective folders for the competition i.e. BugBeatles (Junior Section) and BugHercules (Senior Section). 
+The projects/files which are needed to be worked on have been uploaded in this repository to the respective folders for the competition i.e. BugBeatles (Junior Section) and BugHercules (Senior Section). 
 To see what needs to be fixed or changed or added in those projects, open the *Issues* tab. Check the different labels on those issues, only work on a particular issue if it's meant for your section (according to the label).
 
 ### Your work flow should be
