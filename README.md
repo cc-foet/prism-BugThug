@@ -29,14 +29,28 @@ To see what needs to be fixed or changed or added in those projects, open the *I
 
 ### Your work flow should be
 1. Clone the repository in your visual studio code
-2. Then work on the projects/files according to the issues given.
-3. After you're done working, stage the changes made.
+1. Then work on the projects/files according to the issues given.
+1. After you're done working, stage the changes made.
    - git add . 
-4. After making changes, don’t forget to commit with the sign-off flag (-s)! (It should include your name)
+1. After making changes, don’t forget to commit with the sign-off flag (-s)! (It should include your name)
    - git commit -s -m "my commit message w/signoff"
-5. Once all the changes have been committed, push the changes.
+1. Once all the changes have been committed, push the changes.
    - git push origin <(branch-name)>
-6. Then create a pull request
+1. Then create a pull request
+
+### Pull Request Documentation
+Each Pull Request should be well documented stating which PR is fixed and notes for reviewers.
+
+Example :-
+```
+Notes For Reviewers
+
+This issue fixes #{issue-number}
+
+YOUR PR DOCUMENTATION GOES HERE
+```
+
+![example of pr documentation](assets/example-1.png "PR Documentation Example")
 
 ## Submission Guidlines - 
 Each submission must include a detailed description of the bug(s) identified, the fix(es) implemented, and any relevant documentation.
