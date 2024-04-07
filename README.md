@@ -48,6 +48,7 @@ Participants must adhere to the code of conduct of respective projects they are 
 - Severity and complexity of bugs fixed.
 - Quality and effectiveness of the fixes.
 - Clarity and completeness of documentation.
+- PR (Pull request) should be well documented.
 
 ## Judging Criteria - 
 Submissions will be evaluated by a panel of judges based on the scoring criteria outlined above. 
