@@ -74,6 +74,20 @@ function countCheckedCb(){
   
 
 
+function copyText() {
+('display');
+    var text = document.querySelector(".display");
+    text.select();
+    text.setSelectionRange(0, 999);
+  
+     // Copy the text inside the text field
+    navigator.clipboard.writeText(text.value);
+  
+    alert( "Password copied to clipboard! :"+ text.value );
+    ;
+  }
+
+
 
 
 
