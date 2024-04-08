@@ -8,7 +8,7 @@ class Scoreboard(Turtle):
         self.level = 0
         self.penup()
         self.color("black")
-        self.goto(-240, 260)
+        self.goto(-260, 260)
         self.update_level()
 
     def update_level(self):
