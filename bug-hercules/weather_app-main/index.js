@@ -98,6 +98,9 @@ function renderWeatherInfo(weatherInfo) {
     const windspeed = document.querySelector("[data-windspeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudiness]");
+    const sunrise = document.querySelector("[data-sunrise]");
+    const sunset = document.querySelector("[data-sunset]");
+    
 
     console.log(weatherInfo);
 
@@ -110,6 +113,8 @@ function renderWeatherInfo(weatherInfo) {
     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+    sunrise.innerText = `${weatherInfo?.sunrise?.all}%`;
+    sunset.innerText = `${weatherInfo?.sunset?.all}%`;
 }
 
 function getLocation() {
