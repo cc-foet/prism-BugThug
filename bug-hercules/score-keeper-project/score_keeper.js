@@ -7,8 +7,11 @@ const input = document.querySelector("#maxScore");
 playerOneScore.value = "0";
 playerTwoScore.value = "0";
 let scoreOfOne = 0;
-let scoreOfTwo = 0;
+let scoreoftwo = 0;
 let winner = false ;
+let winners=[];
+let player1winner=false;
+let player2winner=false;
 
 function scoreIncreaserbtn1(){
     scoreOfOne = parseInt(playerOneScore.value);
@@ -19,21 +22,21 @@ function scoreIncreaserbtn1(){
     playerOneScore.innerText = `${playerOneScore.value}`;
 }
 function scoreIncreaserbtn2(){
-    scoreOfTwo = parseInt(playerTwoScore.value);
+    scoreoftwo = parseInt(playerTwoScore.value);
     if(playerTwoScore.value < input.value && winner === false ){
-        scoreOfTwo += 1 ;
+        scoreoftwo += 1 ;
     }
-    playerTwoScore.value = `${scoreOfTwo}`;
+    playerTwoScore.value = `${scoreoftwo}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
 }
 
 
 playerOneBtn.addEventListener('click', scoreIncreaserbtn1);
 playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
-
+let match=1;
 function reset() {
     scoreOfOne = 0;
-    scoreOfTwo = 0;
+    scoreoftwo = 0;
     input.value = "";
 }
 
@@ -52,7 +55,16 @@ playerOneBtn.addEventListener('click' , function(e){
         if(playerOneScore.value === input.value){
             playerOneBtn.classList.add("disabled");
             playerTwoBtn.classList.add("disabled");
+            if(!player1winner && winner){
+                let scoreKeeper= document.getElementById("winnerTracker")
+                let li = document.createElement('li');
+            li.innerText = `Match ${match} : Player 1 `;
+            scoreKeeper.appendChild(li);
+            match=match+1;
+            player1winner=true;
+            }
             winner = true ;
+            
         }
 })
 playerTwoBtn.addEventListener('click' , function(e){
@@ -70,6 +82,14 @@ playerTwoBtn.addEventListener('click' , function(e){
     if(playerTwoScore.value === input.value){
         playerOneBtn.classList.add("disabled");
         playerTwoBtn.classList.add("disabled");
+        if(!player2winner && winner){
+            let scoreKeeper= document.getElementById("winnerTracker")
+            let li = document.createElement('li');
+        li.innerText = `Match ${match} : Player 2 `;
+        scoreKeeper.appendChild(li);
+        match=match+1;
+        player2winner=true;
+        }
         winner = true ;
     }
 })
@@ -78,7 +98,7 @@ resetBtn.addEventListener('click' , function(e){
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
+    input.value = "7";
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
@@ -86,8 +106,11 @@ resetBtn.addEventListener('click' , function(e){
     playerOneBtn.classList.remove("disabled");
     playerTwoBtn.classList.remove("disabled");
     winner = false ;
+    player1winner=false;
+    player2winner=false;
 
 })
+console.log(winners)
 
 
 
