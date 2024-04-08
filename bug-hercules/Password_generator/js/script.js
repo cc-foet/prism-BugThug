@@ -210,4 +210,5 @@ function generatePassword(){
     
 }
 
+
 generateButton.addEventListener('click', generatePassword);
