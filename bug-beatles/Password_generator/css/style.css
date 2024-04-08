@@ -274,6 +274,7 @@ button.copy-btn .copy-tooltip.active{
     height: 2.4rem;
     border-radius: 50%;
     transition: all 250ms ease-in-out;
+    
 }
 
 /* generate button */
