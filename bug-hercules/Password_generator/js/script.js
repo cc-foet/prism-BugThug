@@ -154,6 +154,7 @@ function shuffleArray(array) {
 // Handle generate password
 function generatePassword(){
     // none of the checkboxes are selected
+    calcStrength()
     if(checkCount <= 0){
         alert('Atleast check one checkbox');
         return;
