@@ -75,6 +75,17 @@ playerTwoBtn.addEventListener('click' , function(e){
 })
 
 resetBtn.addEventListener('click' , function(e){
+
+    if(`${playerOneScore.value}` > `${playerTwoScore.value}`){
+        console.log("Player One Wins")
+        alert("Player One Wins")
+    }
+    else{
+        console.log("Player two Wins")
+        alert("Player two Wins")
+
+    }
+    
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
