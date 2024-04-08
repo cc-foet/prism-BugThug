@@ -90,7 +90,9 @@ resetBtn.addEventListener('click' , function(e){
 
 })
 
-
+function matchPlayed() {
+    if(playerOneScore.value == input.value || playerTwoScore.value == input.value
+}
 
 
 
