@@ -1,13 +1,14 @@
+# cars.py
 from turtle import Turtle
 import random
-COLORS = ['blue', 'red', 'yellow', 'purple', 'green']
 
+COLORS = ['blue', 'red', 'yellow', 'purple', 'green']
 
 class Cars(Turtle):
 
-    def __init__(self):
+    def __init__(self, speed):
         super().__init__()
-        self.x_move = 10
+        self.x_move = speed  # Initialize the speed of the cars
         self.color(random.choice(COLORS))
         self.shape("square")
         self.shapesize(1, 2)
@@ -16,5 +17,5 @@ class Cars(Turtle):
 
     def move(self):
         self.goto(self.xcor()-self.x_move, self.ycor())
-
-
+        
+        
