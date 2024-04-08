@@ -26,7 +26,7 @@ const generateButton = document.querySelector("#generateButton");
 const symbols = '~`!@#$%^&*()_-+={[}]|:;"<,>.?/';
 
 let password = "";
-let passwordLength = 10;
+let passwordLength = 20;
 
 // uppercase is checked by default. so checkCount = 1
 uppercaseCb.checked = true;
@@ -195,5 +195,10 @@ function generatePassword(){
 
     
 }
+function copyPasswordToClipboard() {
+    const password = passwordDisplay.value; // Assuming passwordDisplay is the input or element holding the generated password
+    navigator.clipboard.writeText(password)
+}
+copyBtn.addEventListener('click', copyPasswordToClipboard);
 
 generateButton.addEventListener('click', generatePassword);
