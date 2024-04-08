@@ -198,3 +198,15 @@ function generatePassword(){
 }
 
 generateButton.addEventListener('click', generatePassword);
+
+copyBtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    if(password===""){
+        console.log("Empty");
+        return false;
+    }
+    else{
+        navigator.clipboard.writeText(password);
+        alert("Password Copied!");
+    }
+});
