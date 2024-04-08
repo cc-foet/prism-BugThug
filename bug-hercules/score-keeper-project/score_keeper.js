@@ -39,7 +39,7 @@ function reset() {
 
 playerOneBtn.addEventListener('click' , function(e){
         console.log("btn 1 clicked")
-        if(playerOneScore.value == input.value){
+        if(playerOneScore.value === input.value){
             if(playerOneScore.value < playerTwoScore.value){
                 playerOneScore.style.color = "red";
                 playerTwoScore.style.color = "green";
@@ -57,7 +57,7 @@ playerOneBtn.addEventListener('click' , function(e){
 })
 playerTwoBtn.addEventListener('click' , function(e){
     console.log("btn 2 clicked");
-    if(playerTwoScore.value == input.value ){
+    if(playerTwoScore.value === input.value ){
         if(playerOneScore.value < playerTwoScore.value){
             playerOneScore.style.color = "red";
             playerTwoScore.style.color = "green";
@@ -79,7 +79,9 @@ resetBtn.addEventListener('click' , function(e){
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
     input.value = "";
+    playerOneScore.value = `${scoreOfOne}`;
     playerOneScore.innerText = `${playerOneScore.value}`;
+    playerTwoScore.value = `${scoreOfTwo}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
     playerTwoScore.style.color = "black";
