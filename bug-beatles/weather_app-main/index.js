@@ -15,12 +15,12 @@ oldTab.classList.add("current-tab");
 getfromSessionStorage();
 
 function switchTab(newTab) {
-    if(newTab != oldTab) {
+    if (newTab != oldTab) {
         oldTab.classList.remove("current-tab");
         oldTab = newTab;
         oldTab.classList.add("current-tab");
 
-        if(!searchForm.classList.contains("active")) {
+        if (!searchForm.classList.contains("active")) {
             //kya search form wala container is invisible, if yes then make it visible
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
@@ -50,7 +50,7 @@ searchTab.addEventListener("click", () => {
 //check if cordinates are already present in session storage
 function getfromSessionStorage() {
     const localCoordinates = sessionStorage.getItem("user-coordinates");
-    if(!localCoordinates) {
+    if (!localCoordinates) {
         //agar local coordinates nahi mile
         grantAccessContainer.classList.add("active");
     }
@@ -62,7 +62,7 @@ function getfromSessionStorage() {
 }
 
 async function fetchUserWeatherInfo(coordinates) {
-    const {lat, lon} = coordinates;
+    const { lat, lon } = coordinates;
     // make grantcontainer invisible
     grantAccessContainer.classList.remove("active");
     //make loader visible
@@ -72,14 +72,14 @@ async function fetchUserWeatherInfo(coordinates) {
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-          );
-        const  data = await response.json();
+        );
+        const data = await response.json();
 
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
     }
-    catch(err) {
+    catch (err) {
         loadingScreen.classList.remove("active");
         //HW
 
@@ -98,7 +98,10 @@ function renderWeatherInfo(weatherInfo) {
     const windspeed = document.querySelector("[data-windspeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudiness]");
-
+    const sunrise = document.querySelector("[data-sunrise]");
+    const sunset = document.querySelector("[data-sunset]");
+    const temp_min = document.querySelector("[data-temp_min]");
+    const temp_max = document.querySelector("[data-temp_max]");
     console.log(weatherInfo);
 
     //fetch values from weatherINfo object and put it UI elements
@@ -107,13 +110,36 @@ function renderWeatherInfo(weatherInfo) {
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
     temp.innerText = `${weatherInfo?.main?.temp} °C`;
+    temp_min.innerText = `${weatherInfo?.main?.temp_min} °C`;
+    temp_max.innerText = `${weatherInfo?.main?.temp_max} °C`;
     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+    const sunriseTimestamp = `${weatherInfo?.sys?.sunrise}`;
+    const sunsetTimestamp = `${weatherInfo?.sys?.sunset}`;
+    // unix data in utc format conversion
+    if (sunriseTimestamp) {
+        const sunriseDate = new Date(sunriseTimestamp * 1000);
+        const hours = sunriseDate.getHours();
+        const minutes = sunriseDate.getMinutes();
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        const formattedHours = hours % 12 || 12; // Convert 0 to 12
+        const formattedTime = `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+        sunrise.innerText = formattedTime;
+    }
+    if (sunsetTimestamp) {
+        const sunriseDate = new Date(sunriseTimestamp * 1000);
+        const hours = sunriseDate.getHours();
+        const minutes = sunriseDate.getMinutes();
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        const formattedHours = hours % 12 || 12; // Convert 0 to 12
+        const formattedTime = `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
+        sunset.innerText = formattedTime;
+    }
 }
 
 function getLocation() {
-    if(navigator.geolocation) {
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else {
@@ -142,9 +168,9 @@ searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let cityName = searchInput.value;
 
-    if(cityName === "")
+    if (cityName === "")
         return;
-    else 
+    else
         fetchSearchWeatherInfo(cityName);
 })
 
@@ -156,13 +182,13 @@ async function fetchSearchWeatherInfo(city) {
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-          );
+        );
         const data = await response.json();
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
     }
-    catch(err) {
+    catch (err) {
         //hW
     }
 }

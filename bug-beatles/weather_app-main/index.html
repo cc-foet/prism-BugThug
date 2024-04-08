@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
+        rel="stylesheet" />
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    
+
     <div class="wrapper">
 
         <h1>Weather App</h1>
@@ -36,7 +38,7 @@
             <form class="form-container" data-searchForm>
                 <input placeholder="Search for City..." data-searchInput>
                 <button class="btn" type="submit">
-                    <img src="./assets/search.png"  width="20" height="20" loading="lazy">
+                    <img src="./assets/search.png" width="20" height="20" loading="lazy">
                 </button>
             </form>
 
@@ -67,25 +69,44 @@
 
                     <!--card 1-->
                     <div class="parameter">
-                        <img src="./assets/wind.png" >
+                        <img src="./assets/wind.png">
                         <p>windspeed</p>
                         <p data-windspeed></p>
                     </div>
 
                     <!--card 2-->
                     <div class="parameter">
-                        <img src="./assets/humidity.png" >
+                        <img src="./assets/humidity.png">
                         <p>humidity</p>
                         <p data-humidity></p>
                     </div>
 
                     <!--card 3-->
                     <div class="parameter">
-                        <img src="./assets/cloud.png" >
+                        <img src="./assets/cloud.png">
                         <p>Clouds</p>
                         <p data-cloudiness></p>
                     </div>
-
+                    <!-- card 4 -->
+                    <div class="parameter">
+                        <p>Min Temp</p>
+                        <p data-temp_min></p>
+                    </div>
+                    <!-- card 5 -->
+                    <div class="parameter">
+                        <p>Max Temp</p>
+                        <p data-temp_max></p>
+                    </div>
+                    <!-- card 6 -->
+                    <div class="parameter">
+                        <p>Sunrise</p>
+                        <p data-sunrise></p>
+                    </div>
+                    <!-- card 7 -->
+                    <div class="parameter">
+                        <p>Sunset</p>
+                        <p data-sunset></p>
+                    </div>
                 </div>
 
 
@@ -101,4 +122,5 @@
 
     <script src="index.js"></script>
 </body>
+
 </html>
