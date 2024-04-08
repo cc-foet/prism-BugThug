@@ -196,4 +196,7 @@ function generatePassword(){
     
 }
 
-generateButton.addEventListener('click', generatePassword);
+generateButton.addEventListener('click', ()=>{
+    generatePassword()
+    calcStrength()
+});
