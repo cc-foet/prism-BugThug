@@ -5,6 +5,20 @@ const passwordDisplay = document.querySelector("[data-password-display]");
 const copyBtn = document.querySelector("[data-copy-btn]");
 const copyMsg = document.querySelector("[data-copy-msg]");
 
+copyBtn.addEventListener("click",(e)=>{
+    const data=passwordDisplay.value
+   if(data){
+    navigator.clipboard.writeText(data);
+    copyMsg.innerText=`Succesfully Copied`;
+    copyMsg.style.opacity= `1`;
+    copyMsg.style.transform= `scale(1)`;
+    setTimeout(() => {
+        copyMsg.style.opacity= `0`;
+    copyMsg.style.transform= `scale(0)`;
+    }, 2000);
+   }
+})
+
 // length
 const lengthDisplay = document.querySelector("[data-length-display]");
 const lengthSlider = document.querySelector("[data-length-slider]");
