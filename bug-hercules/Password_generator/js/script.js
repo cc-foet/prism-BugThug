@@ -5,6 +5,20 @@ const passwordDisplay = document.querySelector("[data-password-display]");
 const copyBtn = document.querySelector("[data-copy-btn]");
 const copyMsg = document.querySelector("[data-copy-msg]");
 
+copyBtn.addEventListener("click",(e)=>{
+    const data=passwordDisplay.value
+   if(data){
+    navigator.clipboard.writeText(data);
+    copyMsg.innerText=`Succesfully Copied`;
+    copyMsg.style.opacity= `1`;
+    copyMsg.style.transform= `scale(1)`;
+    setTimeout(() => {
+        copyMsg.style.opacity= `0`;
+    copyMsg.style.transform= `scale(0)`;
+    }, 2000);
+   }
+})
+
 // length
 const lengthDisplay = document.querySelector("[data-length-display]");
 const lengthSlider = document.querySelector("[data-length-slider]");
@@ -51,6 +65,7 @@ handleSlider();
 lengthSlider.addEventListener('input', (e)=> {
     passwordLength = e.target.value;
     handleSlider();
+    calcStrength();
 }); 
 
 
@@ -64,11 +79,13 @@ function countCheckedCb(){
 
     allCheckbox.forEach((checkbox) => {
         if(checkbox.checked) checkCount++;
+        calcStrength();
     });
 
     if(passwordLength < checkCount){
         passwordLength = checkCount;
         handleSlider();
+        calcStrength();
     }
 }
   
@@ -110,15 +127,16 @@ function generateSymbol(){
 function setIndicator(color){
     indicator.style.backgroundColor = color;
     indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
+
 }
 
 setIndicator("#ccc");
 
 function calcStrength(){
     let hasUpper = true;
-    let hasLower = true;
-    let hasNumber = true;
-
+    let hasLower = false;
+    let hasNumber = false;
+    let hasSymbol=false;
     if(uppercaseCb.checked) hasUpper = true;
     if(lowercaseCb.checked) hasLower = true;
     if(numberCb.checked) hasNumber = true;
