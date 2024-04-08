@@ -51,6 +51,7 @@ handleSlider();
 lengthSlider.addEventListener('input', (e)=> {
     passwordLength = e.target.value;
     handleSlider();
+    calcStrength();
 }); 
 
 
@@ -64,11 +65,13 @@ function countCheckedCb(){
 
     allCheckbox.forEach((checkbox) => {
         if(checkbox.checked) checkCount++;
+        calcStrength();
     });
 
     if(passwordLength < checkCount){
         passwordLength = checkCount;
         handleSlider();
+        calcStrength();
     }
 }
   
@@ -110,15 +113,16 @@ function generateSymbol(){
 function setIndicator(color){
     indicator.style.backgroundColor = color;
     indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
+
 }
 
 setIndicator("#ccc");
 
 function calcStrength(){
     let hasUpper = true;
-    let hasLower = true;
-    let hasNumber = true;
-
+    let hasLower = false;
+    let hasNumber = false;
+    let hasSymbol=false;
     if(uppercaseCb.checked) hasUpper = true;
     if(lowercaseCb.checked) hasLower = true;
     if(numberCb.checked) hasNumber = true;
