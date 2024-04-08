@@ -55,6 +55,7 @@ playerOneBtn.addEventListener('click' , function(e){
             winner = true ;
         }
 })
+
 playerTwoBtn.addEventListener('click' , function(e){
     console.log("btn 2 clicked");
     if(playerTwoScore.value == input.value ){
@@ -78,7 +79,7 @@ resetBtn.addEventListener('click' , function(e){
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
+    input.value = `${input.value}`;
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
@@ -89,7 +90,9 @@ resetBtn.addEventListener('click' , function(e){
 
 })
 
-
+function matchPlayed() {
+    if(playerOneScore.value == input.value || playerTwoScore.value == input.value
+}
 
 
 
