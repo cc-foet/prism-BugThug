@@ -203,4 +203,5 @@ generateButton.addEventListener('click', generatePassword);
 function copyPassword() {
     var password = document.getElementById("copy-img").value;
     navigator.clipboard.writeText(password);
+    console.log('Password is copy');
   }
