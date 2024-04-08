@@ -199,7 +199,7 @@ label.color-2 {
   opacity: 1;
 }
 .back-color.chair-3 {
-  background-image: linear-gradient(196deg, #8a9fb2, #5f7991);
+  background-image: linear-gradient(196deg, rgb(74, 74, 74), #6b6d6e);
   opacity: 0;
 }
 .for-color-3:checked ~ .back-color.chair-3 {
@@ -380,10 +380,10 @@ h5 {
   background-color: #333;
 }
 .for-color-2:checked ~ .info-wrap .btn:before {
-  background-color: #1a1a1a;
+  background-color: rgba(143, 130, 130, 0.673);
 }
 .for-color-3:checked ~ .info-wrap .btn:before {
-  background-color: #40566e;
+  background-color: black;
 }
 .for-color-4:checked ~ .info-wrap .btn:before {
   background-color: #5e89b2;
