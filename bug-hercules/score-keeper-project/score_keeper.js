@@ -4,6 +4,7 @@ const resetBtn = document.querySelector("#reset");
 const playerOneScore = document.querySelector("#playerOneScore");
 const playerTwoScore = document.querySelector("#playerTwoScore");
 const input = document.querySelector("#maxScore");
+let defaultVal = input.value;
 playerOneScore.value = "0";
 playerTwoScore.value = "0";
 let scoreOfOne = 0;
@@ -34,7 +35,7 @@ playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
 function reset() {
     scoreOfOne = 0;
     scoreOfTwo = 0;
-    input.value = "";
+    input.value = defaultVal;
 }
 
 playerOneBtn.addEventListener('click' , function(e){
@@ -78,7 +79,7 @@ resetBtn.addEventListener('click' , function(e){
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
+    input.value = defaultVal;
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
@@ -88,9 +89,3 @@ resetBtn.addEventListener('click' , function(e){
     winner = false ;
 
 })
-
-
-
-
-
-
