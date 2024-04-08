@@ -195,5 +195,14 @@ function generatePassword(){
 
     
 }
-
+// COpy Password Issue fixed.
+function copyPasswordToClipboard() {
+    const password = passwordDisplay.value; // Assuming passwordDisplay is the input or element holding the generated password
+    navigator.clipboard.writeText(password).then(() => {
+        console.log('Password copied to clipboard');
+    }).catch(err => {
+        console.error('Error in copying password: ', err);
+    });
+}
+copyBtn.addEventListener('click', copyPasswordToClipboard);
 generateButton.addEventListener('click', generatePassword);
