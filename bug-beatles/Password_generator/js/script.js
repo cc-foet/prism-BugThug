@@ -125,12 +125,15 @@ function calcStrength(){
     if(symbolCb.checked) hasSymbol = true;
 
     if(hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength >= 8){
+        indicator.style.backgroundColor = "green";
         setIndicator("#0f0");
     }
     else if((hasUpper || hasLower) && (hasNumber || hasSymbol) && passwordLength >= 6){
+        indicator.styel.backgroundColor = "yellow";
         setIndicator("#ff0");
     }
     else{
+        indicator.style.backgroundColor = "red";
         setIndicator("#f00");
     }
 }
