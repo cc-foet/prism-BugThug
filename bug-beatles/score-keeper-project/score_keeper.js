@@ -8,89 +8,84 @@ playerOneScore.value = "0";
 playerTwoScore.value = "0";
 let scoreOfOne = 0;
 let scoreOfTwo = 0;
-let winner = false ;
+let winner = false;
 
-function scoreIncreaserbtn1(){
-    scoreOfOne = parseInt(playerOneScore.value);
-    if(playerOneScore.value < input.value && winner === false ){
-        scoreOfOne += 1 ;
-    }
-    playerOneScore.value = `${scoreOfOne}`;
-    playerOneScore.innerText = `${playerOneScore.value}`;
+function scoreIncreaserbtn1() {
+  scoreOfOne = parseInt(playerOneScore.value);
+  if (playerOneScore.value < input.value && winner === false) {
+    scoreOfOne += 1;
+  }
+  playerOneScore.value = `${scoreOfOne}`;
+  playerOneScore.innerText = `${playerOneScore.value}`;
 }
-function scoreIncreaserbtn2(){
-    scoreOfTwo = parseInt(playerTwoScore.value);
-    if(playerTwoScore.value < input.value && winner === false ){
-        scoreOfTwo += 1 ;
-    }
-    playerTwoScore.value = `${scoreOfTwo}`;
-    playerTwoScore.innerText = `${playerTwoScore.value}`;
+function scoreIncreaserbtn2() {
+  scoreOfTwo = parseInt(playerTwoScore.value);
+  if (playerTwoScore.value < input.value && winner === false) {
+    scoreOfTwo += 1;
+  }
+  playerTwoScore.value = `${scoreOfTwo}`;
+  playerTwoScore.innerText = `${playerTwoScore.value}`;
 }
 
+// Setting the last value
+let prev_value = 0;
+input.addEventListener("click", () => (prev_value = input.value));
 
-playerOneBtn.addEventListener('click', scoreIncreaserbtn1);
-playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
+playerOneBtn.addEventListener("click", scoreIncreaserbtn1);
+playerTwoBtn.addEventListener("click", scoreIncreaserbtn2);
 
 function reset() {
-    scoreOfOne = 0;
-    scoreOfTwo = 0;
-    input.value = "";
+  scoreOfOne = 0;
+  scoreOfTwo = 0;
+  input.value = "";
 }
 
-playerOneBtn.addEventListener('click' , function(e){
-        console.log("btn 1 clicked")
-        if(playerOneScore.value == input.value){
-            if(playerOneScore.value < playerTwoScore.value){
-                playerOneScore.style.color = "red";
-                playerTwoScore.style.color = "green";
-            }
-            else {
-                    playerOneScore.style.color = "green";
-                    playerTwoScore.style.color = "red" ;
-            }
-        }
-        if(playerOneScore.value === input.value){
-            playerOneBtn.classList.add("disabled");
-            playerTwoBtn.classList.add("disabled");
-            winner = true ;
-        }
-})
-playerTwoBtn.addEventListener('click' , function(e){
-    console.log("btn 2 clicked");
-    if(playerTwoScore.value == input.value ){
-        if(playerOneScore.value < playerTwoScore.value){
-            playerOneScore.style.color = "red";
-            playerTwoScore.style.color = "green";
-        }
-        else {
-                playerOneScore.style.color = "green";
-                playerTwoScore.style.color = "red" ;
-        }
+playerOneBtn.addEventListener("click", function (e) {
+  console.log("btn 1 clicked");
+  if (playerOneScore.value == input.value) {
+    if (playerOneScore.value < playerTwoScore.value) {
+      playerOneScore.style.color = "red";
+      playerTwoScore.style.color = "green";
+    } else {
+      playerOneScore.style.color = "green";
+      playerTwoScore.style.color = "red";
     }
-    if(playerTwoScore.value === input.value){
-        playerOneBtn.classList.add("disabled");
-        playerTwoBtn.classList.add("disabled");
-        winner = true ;
+  }
+  if (playerOneScore.value === input.value) {
+    playerOneBtn.classList.add("disabled");
+    playerTwoBtn.classList.add("disabled");
+    winner = true;
+  }
+});
+
+playerTwoBtn.addEventListener("click", function (e) {
+  console.log("btn 2 clicked");
+  if (playerTwoScore.value == input.value) {
+    if (playerOneScore.value < playerTwoScore.value) {
+      playerOneScore.style.color = "red";
+      playerTwoScore.style.color = "green";
+    } else {
+      playerOneScore.style.color = "green";
+      playerTwoScore.style.color = "red";
     }
-})
+  }
+  if (playerTwoScore.value === input.value) {
+    playerOneBtn.classList.add("disabled");
+    playerTwoBtn.classList.add("disabled");
+    winner = true;
+  }
+});
 
-resetBtn.addEventListener('click' , function(e){
-    console.log("btn reset clicked");
-    playerOneScore.value = "0";
-    playerTwoScore.value = "0";
-    input.value = "";
-    playerOneScore.innerText = `${playerOneScore.value}`;
-    playerTwoScore.innerText = `${playerTwoScore.value}`;
-    playerOneScore.style.color = "black";
-    playerTwoScore.style.color = "black";
-    playerOneBtn.classList.remove("disabled");
-    playerTwoBtn.classList.remove("disabled");
-    winner = false ;
-
-})
-
-
-
-
-
-
+resetBtn.addEventListener("click", function (e) {
+  console.log("btn reset clicked");
+  playerOneScore.value = "0";
+  playerTwoScore.value = "0";
+  input.value = prev_value; //getting the last value
+  playerOneScore.innerText = `${playerOneScore.value}`;
+  playerTwoScore.innerText = `${playerTwoScore.value}`;
+  playerOneScore.style.color = "black";
+  playerTwoScore.style.color = "black";
+  playerOneBtn.classList.remove("disabled");
+  playerTwoBtn.classList.remove("disabled");
+  winner = false;
+});
