@@ -24,8 +24,9 @@ screen.onkeypress(player.up, "Up")
 while game_is_on:
     if counter % 3 == 0:
         car = Cars()
+        car.x_move = scoreboard.level*10
         all_cars.append(car)
-
+    
     counter += 1
 
     for car in all_cars:
@@ -37,6 +38,7 @@ while game_is_on:
             game_is_on = True
             scoreboard.update_level()
             player.goto(0, -270)
+            
             break
         car.move()
 
