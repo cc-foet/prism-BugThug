@@ -41,37 +41,37 @@ function handleSlider() {
     const min = lengthSlider.min;
     const max = lengthSlider.max;
     lengthSlider.style.backgroundSize =
-      ((passwordLength - min) * 100) / (max - min) + "% 100%";
+        ((passwordLength - min) * 100) / (max - min) + "% 100%";
 }
 
 handleSlider();
 
 
 // handle input event on length slider
-lengthSlider.addEventListener('input', (e)=> {
+lengthSlider.addEventListener('input', (e) => {
     passwordLength = e.target.value;
     handleSlider();
-}); 
+});
 
 
 // handle check-count and password-length
-allCheckbox.forEach( (checkbox) => {
+allCheckbox.forEach((checkbox) => {
     checkbox.addEventListener('change', countCheckedCb);
 });
 
-function countCheckedCb(){
+function countCheckedCb() {
     checkCount = 0;
 
     allCheckbox.forEach((checkbox) => {
-        if(checkbox.checked) checkCount++;
+        if (checkbox.checked) checkCount++;
     });
 
-    if(passwordLength < checkCount){
+    if (passwordLength < checkCount) {
         passwordLength = checkCount;
         handleSlider();
     }
 }
-  
+
 
 
 
@@ -83,54 +83,54 @@ function getRandomInteger(min, max) {
 }
 
 // generate any random no. b/w 0- 9
-function generateNumber(){
+function generateNumber() {
     return getRandomInteger(1, 10);
 }
 
 // The ASCII value of the lowercase alphabet is from 97 to 122. 
 // generate any random lowercase b/w a - z
-function generateLowercase(){
-   return String.fromCharCode(getRandomInteger(97, 123));
+function generateLowercase() {
+    return String.fromCharCode(getRandomInteger(97, 123));
 }
 
 // ASCII value of the uppercase alphabet is from 65 to 90.
 // generate any random uppercase b/w A - Z
-function generateUppercase(){
+function generateUppercase() {
     return String.fromCharCode(getRandomInteger(65, 91));
 }
 
 // generate any random symbol from index 0 - 39
-function generateSymbol(){
+function generateSymbol() {
     const randomIndex = getRandomInteger(0, symbols.length);
     return symbols.charAt(randomIndex);
 }
 
 // calculate password strength
 // set Indicator
-function setIndicator(color){
+function setIndicator(color) {
     indicator.style.backgroundColor = color;
-    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
+    indicator.style.boxShadow = 0px 0px 12px 1px ${color};
 }
 
 setIndicator("#ccc");
 
-function calcStrength(){
+function calcStrength() {
     let hasUpper = true;
     let hasLower = true;
     let hasNumber = true;
 
-    if(uppercaseCb.checked) hasUpper = true;
-    if(lowercaseCb.checked) hasLower = true;
-    if(numberCb.checked) hasNumber = true;
-    if(symbolCb.checked) hasSymbol = true;
+    if (uppercaseCb.checked) hasUpper = true;
+    if (lowercaseCb.checked) hasLower = true;
+    if (numberCb.checked) hasNumber = true;
+    if (symbolCb.checked) hasSymbol = true;
 
-    if(hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength >= 8){
+    if (hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength >= 8) {
         setIndicator("#0f0");
     }
-    else if((hasUpper || hasLower) && (hasNumber || hasSymbol) && passwordLength >= 6){
+    else if ((hasUpper || hasLower) && (hasNumber || hasSymbol) && passwordLength >= 6) {
         setIndicator("#ff0");
     }
-    else{
+    else {
         setIndicator("#f00");
     }
 }
@@ -138,12 +138,12 @@ function calcStrength(){
 // Shuffle the array randomly - Fisher Yates algorithm
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      // find out random j
-      const j = Math.floor(Math.random() * (i + 1));
-      // swap 2 numbers
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+        // find out random j
+        const j = Math.floor(Math.random() * (i + 1));
+        // swap 2 numbers
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
     let str = "";
     // array.forEach((el) => (str += el));
@@ -152,9 +152,9 @@ function shuffleArray(array) {
 }
 
 // Handle generate password
-function generatePassword(){
+function generatePassword() {
     // none of the checkboxes are selected
-    if(checkCount <= 0){
+    if (checkCount <= 0) {
         alert('Atleast check one checkbox');
         return;
     }
@@ -171,18 +171,18 @@ function generatePassword(){
     let checkedCbArray = [];
 
     // add selected checkbox functions to an array
-    if(uppercaseCb.checked) checkedCbArray.push(generateUppercase);
-    if(lowercaseCb.checked) checkedCbArray.push(generateLowercase);
-    if(numberCb.checked) checkedCbArray.push(generateNumber);
-    if(symbolCb.checked) checkedCbArray.push(generateSymbol);
+    if (uppercaseCb.checked) checkedCbArray.push(generateUppercase);
+    if (lowercaseCb.checked) checkedCbArray.push(generateLowercase);
+    if (numberCb.checked) checkedCbArray.push(generateNumber);
+    if (symbolCb.checked) checkedCbArray.push(generateSymbol);
 
     // add the required characters - compulsory addition
-    for(let i=0; i < checkedCbArray.length; i++){
+    for (let i = 0; i < checkedCbArray.length; i++) {
         password += checkedCbArray[i]();
     }
 
     // adding random characters till the password length - remaining addition
-    for(let i=0; i < (passwordLength - checkedCbArray.length); i++){
+    for (let i = 0; i < (passwordLength - checkedCbArray.length); i++) {
         let randomIndex = getRandomInteger(0, checkedCbArray.length);
         password += checkedCbArray[randomIndex]();
     }
@@ -193,7 +193,54 @@ function generatePassword(){
     console.log('password :', password);
 
 
-    
+
 }
 
 generateButton.addEventListener('click', generatePassword);
+
+function checkPasswordStrength(password) {
+    let indicator = document.getElementsByClassName('indicator')[0]; // Get the first element with class 'indicator'
+    if (password.length < 8) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password should be at least 8 characters long.";
+    }
+
+    var count = 0;
+    var patterns = [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9\s]/];
+    patterns.forEach(function (pattern) {
+        if (pattern.test(password)) {
+            count++;
+        }
+    });
+
+    if (count < 3) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password should include a mix of uppercase letters, lowercase letters, digits, and special characters.";
+    }
+
+    var commonPatterns = ["123456", "password", "qwerty"];
+    if (commonPatterns.includes(password)) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password is too common.";
+    }
+    
+    var common = ["password", "123456", "qwerty"];
+    if (common.includes(password.toLowerCase())) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password is too common.";
+    }
+    
+    indicator.style.backgroundColor = 'green';
+    indicator.style.boxShadow = '0px 0px 12px 1px green';
+    return "Strong: Password meets complexity requirements.";
+}
+
+
+generateButton.addEventListener('click', () => {
+    let password = document.getElementsByClassName('display')[0].value;
+    checkPasswordStrength(password);
+})
