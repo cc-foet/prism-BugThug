@@ -22,6 +22,11 @@ screen.listen()
 screen.onkeypress(player.up, "Up")
 
 while game_is_on:
+    pos = player.position()
+    if pos[1] >= 310:
+        scoreboard.update_level()
+        player.goto(0, -270)
+
     if counter % 3 == 0:
         car = Cars()
         all_cars.append(car)
@@ -33,6 +38,9 @@ while game_is_on:
             scoreboard.game_over()
             break
         car.move()
+    
+    
+    
 
     time.sleep(0.1)
     screen.update()
