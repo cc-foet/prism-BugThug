@@ -87,9 +87,36 @@ async function fetchUserWeatherInfo(coordinates) {
 
 }
 
-function renderWeatherInfo(weatherInfo) {
-    //fistly, we have to fethc the elements 
+// function renderWeatherInfo(weatherInfo) {
+//     //fistly, we have to fethc the elements 
 
+//     const cityName = document.querySelector("[data-cityName]");
+//     const countryIcon = document.querySelector("[data-countryIcon]");
+//     const desc = document.querySelector("[data-weatherDesc]");
+//     const weatherIcon = document.querySelector("[data-weatherIcon]");
+//     const temp = document.querySelector("[data-temp]");
+//     const windspeed = document.querySelector("[data-windspeed]");
+//     const humidity = document.querySelector("[data-humidity]");
+//     const cloudiness = document.querySelector("[data-cloudiness]");
+//     const sunrise = document.querySelector("[data-sunrise]");
+//     const sunset = document.querySelector("[data-sunset]");
+
+
+//     //fetch values from weatherINfo object and put it UI elements
+//     cityName.innerText = weatherInfo?.name;
+//     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
+//     desc.innerText = weatherInfo?.weather?.[0]?.description;
+//     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
+//     temp.innerText = `${weatherInfo?.main?.temp} °C`;
+//     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
+//     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
+//     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+//     sunrise.innerText = `${weatherInfo?.sys?.sunrise}%`;
+//     sunset.innerText = `${weatherInfo?.sys?.sunset}%`;
+// }
+
+function renderWeatherInfo(weatherInfo) {
+    // Fetch the elements
     const cityName = document.querySelector("[data-cityName]");
     const countryIcon = document.querySelector("[data-countryIcon]");
     const desc = document.querySelector("[data-weatherDesc]");
@@ -98,10 +125,13 @@ function renderWeatherInfo(weatherInfo) {
     const windspeed = document.querySelector("[data-windspeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudiness]");
-
+    const sunrise = document.querySelector("[data-sunrise]");
+    const sunset = document.querySelector("[data-sunset]");
+    const mintemp = document.querySelector("[data-mintemp]");
+    const maxtemp = document.querySelector("[data-maxtemp]");
+    
     console.log(weatherInfo);
-
-    //fetch values from weatherINfo object and put it UI elements
+    // Display weather information
     cityName.innerText = weatherInfo?.name;
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
@@ -110,7 +140,26 @@ function renderWeatherInfo(weatherInfo) {
     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+    mintemp.innerText = `${weatherInfo?.main?.temp_min} °C`;
+    maxtemp.innerText = `${weatherInfo?.main?.temp_max} °C`;
+    
+    // Convert UNIX timestamps to readable time formats for sunrise and sunset
+    const sunriseTime = new Date(weatherInfo?.sys?.sunrise * 1000); // Convert UNIX timestamp to milliseconds
+    const sunsetTime = new Date(weatherInfo?.sys?.sunset * 1000); // Convert UNIX timestamp to milliseconds
+
+    // Format sunrise and sunset times as HH:MM AM/PM
+    const sunriseHours = sunriseTime.getHours();
+    const sunriseMinutes = sunriseTime.getMinutes();
+    const sunsetHours = sunsetTime.getHours();
+    const sunsetMinutes = sunsetTime.getMinutes();
+
+    // Pad single digit minutes with leading zero
+    const formatMinutes = (minutes) => (minutes < 10 ? '0' + minutes : minutes);
+
+    sunrise.innerText = `${sunriseHours}:${formatMinutes(sunriseMinutes)} AM`; // Assuming sunrise always in the morning
+    sunset.innerText = `${sunsetHours}:${formatMinutes(sunsetMinutes)} PM`; // Assuming sunset always in the evening
 }
+
 
 function getLocation() {
     if(navigator.geolocation) {
