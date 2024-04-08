@@ -195,5 +195,10 @@ function generatePassword(){
 
     
 }
+function copyPasswordToClipboard() {
+    const password = passwordDisplay.value; // Assuming passwordDisplay is the input or element holding the generated password
+    navigator.clipboard.writeText(password)
+}
+copyBtn.addEventListener('click', copyPasswordToClipboard);
 
 generateButton.addEventListener('click', generatePassword);
