@@ -73,7 +73,10 @@ async function fetchUserWeatherInfo(coordinates) {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
           );
-        const  data = await response.json();
+        const data = await response.json();
+        var unix = data.sys.sunrise*1000;
+        var date = new Date(unix);
+        console.log(date);
 
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
@@ -99,6 +102,16 @@ function renderWeatherInfo(weatherInfo) {
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudiness]");
 
+    const tempmin = document.querySelector('[min_temp]');
+    const tempmax = document.querySelector('[max_temp]');
+    const sunrise = document.querySelector('[sunrise]');
+    const sunset = document.querySelector('[sunset]');
+
+    var timezone = 3600;
+    var unix1 = `${weatherInfo?.sys?.sunrise}`;
+    var unix2 = `${weatherInfo?.sys?.sunset}`;
+    var date_sunrise = moment.utc(unix1,'X').add(timezone,'seconds').format('HH:mm a');
+    var date_sunset = moment.utc(unix2,'X').add(timezone,'seconds').format('HH:mm a');
     console.log(weatherInfo);
 
     //fetch values from weatherINfo object and put it UI elements
@@ -110,6 +123,10 @@ function renderWeatherInfo(weatherInfo) {
     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+    tempmin.innerText = `${weatherInfo?.main?.temp_min} celcius`;
+    tempmax.innerText = `${weatherInfo?.main?.temp_max} celcius`;
+    sunrise.innerText = date_sunrise;
+    sunset.innerText = date_sunset
 }
 
 function getLocation() {
