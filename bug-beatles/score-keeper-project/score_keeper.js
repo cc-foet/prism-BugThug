@@ -34,7 +34,6 @@ playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
 function reset() {
     scoreOfOne = 0;
     scoreOfTwo = 0;
-    input.value = "";
 }
 
 playerOneBtn.addEventListener('click' , function(e){
@@ -78,7 +77,6 @@ resetBtn.addEventListener('click' , function(e){
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
