@@ -165,6 +165,37 @@ function generatePassword(){
         handleSlider();
     }
 
+    function copyPassword() {
+        // Select the password display element
+        passwordDisplay.select();
+        // Copy the selected text
+        document.execCommand("copy");
+        // Deselect the text
+        window.getSelection().removeAllRanges();
+    
+        
+        copyMsg.classList.remove("hide");
+        setTimeout(() => {
+            copyMsg.classList.add("hide");
+        }, 2000);
+        alert('Password copied to clipboard');
+    }
+    
+    // Add event listener to the copy button
+    copyBtn.addEventListener('click', copyPassword);
+    
+// function copyPassword(password){
+//     var tempInput = document.createElement("input");
+    
+//     tempInput.value = password;
+//     tempInput.setAttribute("readonly", "");
+//     document.body.appendChild(tempInput);
+//     tempInput.select();
+//     tempInput.setSelectionRange(0, tempInput.value.length);
+
+//     document.execCommand("copy");
+//     document.body.removeChild(tempInput);
+// }
     // remove the previous password
     if (password.length) password = "";
 
