@@ -8,20 +8,21 @@ playerOneScore.value = "0";
 playerTwoScore.value = "0";
 let scoreOfOne = 0;
 let scoreOfTwo = 0;
-let winner = false ;
+let winner = false;
 
-function scoreIncreaserbtn1(){
+function scoreIncreaserbtn1() {
     scoreOfOne = parseInt(playerOneScore.value);
-    if(playerOneScore.value < input.value && winner === false ){
-        scoreOfOne += 1 ;
+    if (playerOneScore.value < input.value && winner === false) {
+        scoreOfOne += 1;
     }
     playerOneScore.value = `${scoreOfOne}`;
     playerOneScore.innerText = `${playerOneScore.value}`;
 }
-function scoreIncreaserbtn2(){
+
+function scoreIncreaserbtn2() {
     scoreOfTwo = parseInt(playerTwoScore.value);
-    if(playerTwoScore.value < input.value && winner === false ){
-        scoreOfTwo += 1 ;
+    if (playerTwoScore.value < input.value && winner === false) {
+        scoreOfTwo += 1;
     }
     playerTwoScore.value = `${scoreOfTwo}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
@@ -37,60 +38,52 @@ function reset() {
     input.value = "";
 }
 
-playerOneBtn.addEventListener('click' , function(e){
-        console.log("btn 1 clicked")
-        if(playerOneScore.value == input.value){
-            if(playerOneScore.value < playerTwoScore.value){
-                playerOneScore.style.color = "red";
-                playerTwoScore.style.color = "green";
-            }
-            else {
-                    playerOneScore.style.color = "green";
-                    playerTwoScore.style.color = "red" ;
-            }
-        }
-        if(playerOneScore.value === input.value){
-            playerOneBtn.classList.add("disabled");
-            playerTwoBtn.classList.add("disabled");
-            winner = true ;
-        }
-})
-playerTwoBtn.addEventListener('click' , function(e){
-    console.log("btn 2 clicked");
-    if(playerTwoScore.value == input.value ){
-        if(playerOneScore.value < playerTwoScore.value){
+playerOneBtn.addEventListener('click', function(e) {
+    console.log("btn 1 clicked")
+    if (playerOneScore.value == input.value) {
+        if (playerOneScore.value < playerTwoScore.value) {
             playerOneScore.style.color = "red";
             playerTwoScore.style.color = "green";
-        }
-        else {
-                playerOneScore.style.color = "green";
-                playerTwoScore.style.color = "red" ;
+        } else {
+            playerOneScore.style.color = "green";
+            playerTwoScore.style.color = "red";
         }
     }
-    if(playerTwoScore.value === input.value){
+    if (playerOneScore.value === input.value) {
         playerOneBtn.classList.add("disabled");
         playerTwoBtn.classList.add("disabled");
-        winner = true ;
+        winner = true;
+    }
+})
+playerTwoBtn.addEventListener('click', function(e) {
+    console.log("btn 2 clicked");
+    if (playerTwoScore.value == input.value) {
+        if (playerOneScore.value < playerTwoScore.value) {
+            playerOneScore.style.color = "red";
+            playerTwoScore.style.color = "green";
+        } else {
+            playerOneScore.style.color = "green";
+            playerTwoScore.style.color = "red";
+        }
+    }
+    if (playerTwoScore.value === input.value) {
+        playerOneBtn.classList.add("disabled");
+        playerTwoBtn.classList.add("disabled");
+        winner = true;
     }
 })
 
-resetBtn.addEventListener('click' , function(e){
+resetBtn.addEventListener('click', function(e) {
     console.log("btn reset clicked");
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
+    input.value = "7";
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
     playerTwoScore.style.color = "black";
     playerOneBtn.classList.remove("disabled");
     playerTwoBtn.classList.remove("disabled");
-    winner = false ;
+    winner = false;
 
 })
-
-
-
-
-
-
