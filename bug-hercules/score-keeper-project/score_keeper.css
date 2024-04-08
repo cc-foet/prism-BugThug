@@ -5,3 +5,20 @@
 .mycss-ml {
     padding-left: 400px;
 }
+
+#winnerTable{
+    background: rgb(249, 243, 181);
+    border: 1;
+    border-radius: 15px;
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    font-size: x-large;
+    font-family: serif;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;    
+}
+#winnerTracker{
+    list-style-type: none;
+}
