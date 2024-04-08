@@ -126,12 +126,18 @@ function calcStrength(){
 
     if(hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength >= 8){
         setIndicator("#0f0");
+        
+
     }
     else if((hasUpper || hasLower) && (hasNumber || hasSymbol) && passwordLength >= 6){
         setIndicator("#ff0");
+        
+
     }
     else{
         setIndicator("#f00");
+        
+
     }
 }
 
@@ -196,4 +202,7 @@ function generatePassword(){
     
 }
 
-generateButton.addEventListener('click', generatePassword);
+generateButton.addEventListener('click', ()=>{
+    generatePassword()
+    calcStrength()
+});
