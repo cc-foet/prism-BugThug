@@ -42,6 +42,8 @@ function handleSlider() {
     const max = lengthSlider.max;
     lengthSlider.style.backgroundSize =
       ((passwordLength - min) * 100) / (max - min) + "% 100%";
+
+
 }
 
 handleSlider();
@@ -57,6 +59,7 @@ lengthSlider.addEventListener('input', (e)=> {
 // handle check-count and password-length
 allCheckbox.forEach( (checkbox) => {
     checkbox.addEventListener('change', countCheckedCb);
+    checkbox.addEventListener('change', calcStrength);
 });
 
 function countCheckedCb(){
@@ -115,9 +118,10 @@ function setIndicator(color){
 setIndicator("#ccc");
 
 function calcStrength(){
-    let hasUpper = true;
-    let hasLower = true;
-    let hasNumber = true;
+    let hasUpper = false;
+    let hasLower = false;
+    let hasNumber = false;
+    let hasSymbol = false;
 
     if(uppercaseCb.checked) hasUpper = true;
     if(lowercaseCb.checked) hasLower = true;
