@@ -196,4 +196,14 @@ function generatePassword(){
     
 }
 
+copyBtn.addEventListener('click', () => {
+    passwordDisplay.select();
+    document.execCommand("copy");
+    copyMsg.innerText = "Copied!";
+    // Clear the copied message after 2 seconds
+    setTimeout(() => {
+        copyMsg.innerText = "";
+    }, 2000);
+});
+
 generateButton.addEventListener('click', generatePassword);

@@ -88,8 +88,7 @@ async function fetchUserWeatherInfo(coordinates) {
 }
 
 function renderWeatherInfo(weatherInfo) {
-    //fistly, we have to fethc the elements 
-
+    // Fetching HTML elements
     const cityName = document.querySelector("[data-cityName]");
     const countryIcon = document.querySelector("[data-countryIcon]");
     const desc = document.querySelector("[data-weatherDesc]");
@@ -98,10 +97,14 @@ function renderWeatherInfo(weatherInfo) {
     const windspeed = document.querySelector("[data-windspeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudiness]");
+    const sunrise = document.querySelector("[data-sunrise]");
+    const sunset = document.querySelector("[data-sunset]"); 
+    const minTemp = document.querySelector("[data-min-temp]"); 
+    const maxTemp = document.querySelector("[data-max-temp]"); 
 
     console.log(weatherInfo);
 
-    //fetch values from weatherINfo object and put it UI elements
+    // Rendering weather data
     cityName.innerText = weatherInfo?.name;
     countryIcon.src = `https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
@@ -110,7 +113,12 @@ function renderWeatherInfo(weatherInfo) {
     windspeed.innerText = `${weatherInfo?.wind?.speed} m/s`;
     humidity.innerText = `${weatherInfo?.main?.humidity}%`;
     cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
+    sunrise.innerText = new Date(weatherInfo?.sys?.sunrise * 1000).toLocaleTimeString(); 
+    sunset.innerText = new Date(weatherInfo?.sys?.sunset * 1000).toLocaleTimeString(); 
+    minTemp.innerText = `${weatherInfo?.main?.temp_min} °C`; 
+    maxTemp.innerText = `${weatherInfo?.main?.temp_max} °C`; 
 }
+
 
 function getLocation() {
     if(navigator.geolocation) {
