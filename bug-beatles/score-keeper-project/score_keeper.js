@@ -1,96 +1,246 @@
-const playerOneBtn = document.querySelector("#player1btn");
-const playerTwoBtn = document.querySelector("#player2btn");
-const resetBtn = document.querySelector("#reset");
-const playerOneScore = document.querySelector("#playerOneScore");
-const playerTwoScore = document.querySelector("#playerTwoScore");
-const input = document.querySelector("#maxScore");
-playerOneScore.value = "0";
-playerTwoScore.value = "0";
-let scoreOfOne = 0;
-let scoreOfTwo = 0;
-let winner = false ;
+// display
+const passwordDisplay = document.querySelector("[data-password-display]");
 
-function scoreIncreaserbtn1(){
-    scoreOfOne = parseInt(playerOneScore.value);
-    if(playerOneScore.value < input.value && winner === false ){
-        scoreOfOne += 1 ;
-    }
-    playerOneScore.value = `${scoreOfOne}`;
-    playerOneScore.innerText = `${playerOneScore.value}`;
+// copy password
+const copyBtn = document.querySelector("[data-copy-btn]");
+const copyMsg = document.querySelector("[data-copy-msg]");
+
+// length
+const lengthDisplay = document.querySelector("[data-length-display]");
+const lengthSlider = document.querySelector("[data-length-slider]");
+
+// checkboxes
+const uppercaseCb = document.querySelector("#uppercaseCb");
+const lowercaseCb = document.querySelector("#lowercaseCb");
+const numberCb = document.querySelector("#numberCb");
+const symbolCb = document.querySelector("#symbolCb");
+const allCheckbox = document.querySelectorAll("input[type=checkbox]");
+
+// indicator
+const indicator = document.querySelector("[data-indicator]");
+
+// generate button
+const generateButton = document.querySelector("#generateButton");
+
+// symbol
+const symbols = '~`!@#$%^&*()_-+={[}]|:;"<,>.?/';
+
+let password = "";
+let passwordLength = 10;
+
+// uppercase is checked by default. so checkCount = 1
+uppercaseCb.checked = true;
+let checkCount = 1;
+
+
+// set password length  input slider background
+function handleSlider() {
+    lengthSlider.value = passwordLength;
+    lengthDisplay.innerText = passwordLength;
+
+    const min = lengthSlider.min;
+    const max = lengthSlider.max;
+    lengthSlider.style.backgroundSize =
+        ((passwordLength - min) * 100) / (max - min) + "% 100%";
 }
-function scoreIncreaserbtn2(){
-    scoreOfTwo = parseInt(playerTwoScore.value);
-    if(playerTwoScore.value < input.value && winner === false ){
-        scoreOfTwo += 1 ;
+
+handleSlider();
+
+
+// handle input event on length slider
+lengthSlider.addEventListener('input', (e) => {
+    passwordLength = e.target.value;
+    handleSlider();
+});
+
+
+// handle check-count and password-length
+allCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener('change', countCheckedCb);
+});
+
+function countCheckedCb() {
+    checkCount = 0;
+
+    allCheckbox.forEach((checkbox) => {
+        if (checkbox.checked) checkCount++;
+    });
+
+    if (passwordLength < checkCount) {
+        passwordLength = checkCount;
+        handleSlider();
     }
-    playerTwoScore.value = `${scoreOfTwo}`;
-    playerTwoScore.innerText = `${playerTwoScore.value}`;
 }
 
 
-playerOneBtn.addEventListener('click', scoreIncreaserbtn1);
-playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
 
-function reset() {
-    scoreOfOne = 0;
-    scoreOfTwo = 0;
-    // input.value = "";
+
+
+
+// genarate any random no. b/w min and max(exclusive)
+function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-playerOneBtn.addEventListener('click' , function(e){
-        console.log("btn 1 clicked")
-        if(playerOneScore.value == input.value){
-            if(playerOneScore.value < playerTwoScore.value){
-                playerOneScore.style.color = "red";
-                playerTwoScore.style.color = "green";
-            }
-            else {
-                    playerOneScore.style.color = "green";
-                    playerTwoScore.style.color = "red" ;
-            }
-        }
-        if(playerOneScore.value === input.value){
-            playerOneBtn.classList.add("disabled");
-            playerTwoBtn.classList.add("disabled");
-            winner = true ;
-        }
-})
-playerTwoBtn.addEventListener('click' , function(e){
-    console.log("btn 2 clicked");
-    if(playerTwoScore.value == input.value ){
-        if(playerOneScore.value < playerTwoScore.value){
-            playerOneScore.style.color = "red";
-            playerTwoScore.style.color = "green";
-        }
-        else {
-                playerOneScore.style.color = "green";
-                playerTwoScore.style.color = "red" ;
-        }
+// generate any random no. b/w 0- 9
+function generateNumber() {
+    return getRandomInteger(1, 10);
+}
+
+// The ASCII value of the lowercase alphabet is from 97 to 122. 
+// generate any random lowercase b/w a - z
+function generateLowercase() {
+    return String.fromCharCode(getRandomInteger(97, 123));
+}
+
+// ASCII value of the uppercase alphabet is from 65 to 90.
+// generate any random uppercase b/w A - Z
+function generateUppercase() {
+    return String.fromCharCode(getRandomInteger(65, 91));
+}
+
+// generate any random symbol from index 0 - 39
+function generateSymbol() {
+    const randomIndex = getRandomInteger(0, symbols.length);
+    return symbols.charAt(randomIndex);
+}
+
+// calculate password strength
+// set Indicator
+function setIndicator(color) {
+    indicator.style.backgroundColor = color;
+    indicator.style.boxShadow = 0px 0px 12px 1px ${color};
+}
+
+setIndicator("#ccc");
+
+function calcStrength() {
+    let hasUpper = true;
+    let hasLower = true;
+    let hasNumber = true;
+
+    if (uppercaseCb.checked) hasUpper = true;
+    if (lowercaseCb.checked) hasLower = true;
+    if (numberCb.checked) hasNumber = true;
+    if (symbolCb.checked) hasSymbol = true;
+
+    if (hasUpper && hasLower && (hasNumber || hasSymbol) && passwordLength >= 8) {
+        setIndicator("#0f0");
     }
-    if(playerTwoScore.value === input.value){
-        playerOneBtn.classList.add("disabled");
-        playerTwoBtn.classList.add("disabled");
-        winner = true ;
+    else if ((hasUpper || hasLower) && (hasNumber || hasSymbol) && passwordLength >= 6) {
+        setIndicator("#ff0");
     }
+    else {
+        setIndicator("#f00");
+    }
+}
+
+// Shuffle the array randomly - Fisher Yates algorithm
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // find out random j
+        const j = Math.floor(Math.random() * (i + 1));
+        // swap 2 numbers
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    let str = "";
+    // array.forEach((el) => (str += el));
+    str = array.join("");
+    return str;
+}
+
+// Handle generate password
+function generatePassword() {
+    // none of the checkboxes are selected
+    if (checkCount <= 0) {
+        alert('Atleast check one checkbox');
+        return;
+    }
+
+    // password-length should be >= selected no. of checkbox
+    if (passwordLength < checkCount) {
+        passwordLength = checkCount;
+        handleSlider();
+    }
+
+    // remove the previous password
+    if (password.length) password = "";
+
+    let checkedCbArray = [];
+
+    // add selected checkbox functions to an array
+    if (uppercaseCb.checked) checkedCbArray.push(generateUppercase);
+    if (lowercaseCb.checked) checkedCbArray.push(generateLowercase);
+    if (numberCb.checked) checkedCbArray.push(generateNumber);
+    if (symbolCb.checked) checkedCbArray.push(generateSymbol);
+
+    // add the required characters - compulsory addition
+    for (let i = 0; i < checkedCbArray.length; i++) {
+        password += checkedCbArray[i]();
+    }
+
+    // adding random characters till the password length - remaining addition
+    for (let i = 0; i < (passwordLength - checkedCbArray.length); i++) {
+        let randomIndex = getRandomInteger(0, checkedCbArray.length);
+        password += checkedCbArray[randomIndex]();
+    }
+
+    // shuffle the newly created pass.
+    password = shuffleArray(Array.from(password));
+    passwordDisplay.value = password;
+    console.log('password :', password);
+
+
+
+}
+
+generateButton.addEventListener('click', generatePassword);
+
+function checkPasswordStrength(password) {
+    let indicator = document.getElementsByClassName('indicator')[0]; // Get the first element with class 'indicator'
+    if (password.length < 8) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password should be at least 8 characters long.";
+    }
+
+    var count = 0;
+    var patterns = [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9\s]/];
+    patterns.forEach(function (pattern) {
+        if (pattern.test(password)) {
+            count++;
+        }
+    });
+
+    if (count < 3) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password should include a mix of uppercase letters, lowercase letters, digits, and special characters.";
+    }
+
+    var commonPatterns = ["123456", "password", "qwerty"];
+    if (commonPatterns.includes(password)) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password is too common.";
+    }
+    
+    var common = ["password", "123456", "qwerty"];
+    if (common.includes(password.toLowerCase())) {
+        indicator.style.backgroundColor = 'red';
+        indicator.style.boxShadow = '0px 0px 12px 1px red';
+        return "Weak: Password is too common.";
+    }
+    
+    indicator.style.backgroundColor = 'green';
+    indicator.style.boxShadow = '0px 0px 12px 1px green';
+    return "Strong: Password meets complexity requirements.";
+}
+
+
+generateButton.addEventListener('click', () => {
+    let password = document.getElementsByClassName('display')[0].value;
+    checkPasswordStrength(password);
 })
-
-resetBtn.addEventListener('click' , function(e){
-    console.log("btn reset clicked");
-    playerOneScore.value = "0";
-    playerTwoScore.value = "0";
-    // input.value = "";
-    playerOneScore.innerText = `${playerOneScore.value}`;
-    playerTwoScore.innerText = `${playerTwoScore.value}`;
-    playerOneScore.style.color = "black";
-    playerTwoScore.style.color = "black";
-    playerOneBtn.classList.remove("disabled");
-    playerTwoBtn.classList.remove("disabled");
-    winner = false ;
-
-})
-
-
-
-
-
-
