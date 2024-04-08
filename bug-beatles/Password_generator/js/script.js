@@ -197,3 +197,10 @@ function generatePassword(){
 }
 
 generateButton.addEventListener('click', generatePassword);
+
+//  copy password 
+
+function copyPassword() {
+    var password = document.getElementById("copy-img").value;
+    navigator.clipboard.writeText(password);
+  }
