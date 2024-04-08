@@ -112,6 +112,7 @@ function setIndicator(color){
     indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
+
 setIndicator("#ccc");
 
 function calcStrength(){
@@ -197,3 +198,9 @@ function generatePassword(){
 }
 
 generateButton.addEventListener('click', generatePassword);
+
+// function copyPassword() {
+    var password = document.getElementById("copy-img").value;
+    navigator.clipboard.writeText(password);
+    console.log('Password is copy');
+
