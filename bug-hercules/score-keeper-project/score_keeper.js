@@ -7,7 +7,7 @@ const input = document.querySelector("#maxScore");
 playerOneScore.value = "0";
 playerTwoScore.value = "0";
 let scoreOfOne = 0;
-let scoreOfTwo = 0;
+let scoreoftwo = 0;
 let winner = false ;
 let winners=[];
 let player1winner=false;
@@ -22,11 +22,11 @@ function scoreIncreaserbtn1(){
     playerOneScore.innerText = `${playerOneScore.value}`;
 }
 function scoreIncreaserbtn2(){
-    scoreOfTwo = parseInt(playerTwoScore.value);
+    scoreoftwo = parseInt(playerTwoScore.value);
     if(playerTwoScore.value < input.value && winner === false ){
-        scoreOfTwo += 1 ;
+        scoreoftwo += 1 ;
     }
-    playerTwoScore.value = `${scoreOfTwo}`;
+    playerTwoScore.value = `${scoreoftwo}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
 }
 
@@ -36,7 +36,7 @@ playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
 let match=1;
 function reset() {
     scoreOfOne = 0;
-    scoreOfTwo = 0;
+    scoreoftwo = 0;
     input.value = "";
 }
 
