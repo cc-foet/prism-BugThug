@@ -112,7 +112,7 @@ function setIndicator(color){
     indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
-setIndicator("#ccc");
+// setIndicator("#ccc");
 
 function calcStrength(){
     let hasUpper = true;
@@ -191,6 +191,7 @@ function generatePassword(){
     password = shuffleArray(Array.from(password));
     passwordDisplay.value = password;
     console.log('password :', password);
+    calcStrength();
 
 
     
