@@ -9,6 +9,8 @@ playerTwoScore.value = "0";
 let scoreOfOne = 0;
 let scoreOfTwo = 0;
 let winner = false ;
+let score = [];
+let gameCount = 0;
 
 function scoreIncreaserbtn1(){
     scoreOfOne = parseInt(playerOneScore.value);
@@ -34,7 +36,7 @@ playerTwoBtn.addEventListener('click', scoreIncreaserbtn2);
 function reset() {
     scoreOfOne = 0;
     scoreOfTwo = 0;
-    input.value = "";
+    // input.value = "";
 }
 
 playerOneBtn.addEventListener('click' , function(e){
@@ -52,7 +54,12 @@ playerOneBtn.addEventListener('click' , function(e){
         if(playerOneScore.value === input.value){
             playerOneBtn.classList.add("disabled");
             playerTwoBtn.classList.add("disabled");
+            playerOneBtn.disabled = true;
+            playerTwoBtn.disabled = true;
             winner = true ;
+            gameCount++;
+            score.push({"Game":gameCount,"Player 1":playerOneScore.value,"Player 2":playerTwoScore.value})
+            console.log(score);
         }
 })
 playerTwoBtn.addEventListener('click' , function(e){
@@ -70,21 +77,30 @@ playerTwoBtn.addEventListener('click' , function(e){
     if(playerTwoScore.value === input.value){
         playerOneBtn.classList.add("disabled");
         playerTwoBtn.classList.add("disabled");
+        playerOneBtn.disabled = true;
+        playerTwoBtn.disabled = true;
         winner = true ;
+        gameCount++;
+        score.push({"Game":gameCount,"Player 1":playerOneScore.value,"Player 2":playerTwoScore.value})
+        console.log(score);
     }
 })
 
 resetBtn.addEventListener('click' , function(e){
     console.log("btn reset clicked");
+
     playerOneScore.value = "0";
     playerTwoScore.value = "0";
-    input.value = "";
+    // input.value = "";
     playerOneScore.innerText = `${playerOneScore.value}`;
     playerTwoScore.innerText = `${playerTwoScore.value}`;
     playerOneScore.style.color = "black";
     playerTwoScore.style.color = "black";
     playerOneBtn.classList.remove("disabled");
+    playerOneBtn.disabled = false;
     playerTwoBtn.classList.remove("disabled");
+    playerTwoBtn.disabled = false;
+    
     winner = false ;
 
 })
