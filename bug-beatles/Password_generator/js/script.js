@@ -5,6 +5,17 @@ const passwordDisplay = document.querySelector("[data-password-display]");
 const copyBtn = document.querySelector("[data-copy-btn]");
 const copyMsg = document.querySelector("[data-copy-msg]");
 
+// Copy password to clipboard. This will highlight the Password when copied making sure that it is copied.
+copyBtn.addEventListener('click', () => {
+    passwordDisplay.select();
+    document.execCommand('copy');
+    copyMsg.innerText = 'Copied!';
+    setTimeout(() => {
+        copyMsg.innerText = '';
+    }, 1500);
+});
+
+
 // length
 const lengthDisplay = document.querySelector("[data-length-display]");
 const lengthSlider = document.querySelector("[data-length-slider]");
@@ -192,8 +203,8 @@ function generatePassword(){
     passwordDisplay.value = password;
     console.log('password :', password);
 
-
-    
+    // Calculate password strength after generating the password
+    calcStrength(); // This shows the updated indicator 
 }
 
 generateButton.addEventListener('click', generatePassword);
