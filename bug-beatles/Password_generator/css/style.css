@@ -11,44 +11,44 @@
     --dk-text: hsl(198, 20%, 13%);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'League Spartan', sans-serif;
 }
 
-html{
+html {
     font-size: 62.5%;
 }
 
-body{
+body {
     font-size: 1.6rem;
 }
 
-a{
+a {
     text-decoration: none;
     color: inherit;
 }
 
 /* wrapper */
-.wrapper{
+.wrapper {
     width: 100vw;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(231deg, rgba(22, 6, 40, 1) 0%,
-     rgba(52, 28, 79, 1) 50%, 
-     rgba(88, 7, 125, 1) 100%);
+            rgba(52, 28, 79, 1) 50%,
+            rgba(88, 7, 125, 1) 100%);
 }
 
-.container{
+.container {
     width: 90%;
     max-width: 45rem;
 }
 
-.app-name{
+.app-name {
     font-size: 3.2rem;
     font-weight: 600;
     color: var(--pl-white);
@@ -60,7 +60,7 @@ a{
 }
 
 /* display container */
-.display-container{
+.display-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,7 +71,7 @@ a{
     margin: 1.6rem 0;
 }
 
-input.display{
+input.display {
     width: 100%;
     font-size: 2.4rem;
     font-weight: 600;
@@ -83,13 +83,13 @@ input.display{
     outline: none;
 }
 
-input.display::placeholder{
+input.display::placeholder {
     color: var(--vb-yellow);
     text-transform: uppercase;
     opacity: 0.65;
 }
 
-button.copy-btn{
+button.copy-btn {
     border: none;
     outline: none;
     background: transparent;
@@ -98,12 +98,12 @@ button.copy-btn{
     position: relative;
 }
 
-button.copy-btn .copy-img{
+button.copy-btn .copy-img {
     width: 2.4rem;
     height: 2.4rem;
 }
 
-button.copy-btn .copy-tooltip{
+button.copy-btn .copy-tooltip {
     position: absolute;
     top: -3.7rem;
     left: -3rem;
@@ -118,13 +118,13 @@ button.copy-btn .copy-tooltip{
     transform: scale(0);
 }
 
-button.copy-btn .copy-tooltip.active{
+button.copy-btn .copy-tooltip.active {
     opacity: 1;
     transform: scale(1);
 }
 
 /* input container */
-.input-container{
+.input-container {
     padding: 3.2rem;
     color: var(--pl-white);
     background-color: var(--dk-violet);
@@ -136,24 +136,24 @@ button.copy-btn .copy-tooltip.active{
 }
 
 /* length container */
-.length-container{
+.length-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.length-container p:first-child{
+.length-container p:first-child {
     font-size: 2.4rem;
 }
 
-.length-container p:last-child{
+.length-container p:last-child {
     font-size: 2.4rem;
     font-weight: 600;
     color: var(--vb-yellow);
 }
 
 /* slider */
-.slider{
+.slider {
     appearance: none;
     width: 100%;
     height: 1.2rem;
@@ -175,7 +175,7 @@ button.copy-btn .copy-tooltip.active{
     border: 0.3rem solid var(--vb-yellow);
 } */
 
-.slider::-webkit-slider-thumb{
+.slider::-webkit-slider-thumb {
     appearance: none;
     width: 3.2rem;
     height: 3.2rem;
@@ -218,14 +218,14 @@ button.copy-btn .copy-tooltip.active{
 }
 
 /* checkboxes */
-.checkbox-container{
+.checkbox-container {
     display: flex;
     align-items: center;
     column-gap: 1.6rem;
     margin: 1.6rem 0;
 }
 
-.checkbox-container input[type="checkbox"]{
+.checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 2rem;
     height: 2rem;
@@ -235,14 +235,14 @@ button.copy-btn .copy-tooltip.active{
     position: relative;
 }
 
-.checkbox-container input[type="checkbox"]:checked{
+.checkbox-container input[type="checkbox"]:checked {
     background-color: var(--vb-cyan);
 }
 
 /* tick symbol */
-.checkbox-container input[type="checkbox"]:checked::before{
+.checkbox-container input[type="checkbox"]:checked::before {
     /* \2713 */
-    content: '✔'; 
+    content: '✔';
     position: absolute;
     top: -0.35rem;
     left: 50%;
@@ -252,24 +252,24 @@ button.copy-btn .copy-tooltip.active{
     font-weight: 600;
 }
 
-.checkbox-container label{
+.checkbox-container label {
     font-size: 2rem;
     text-transform: capitalize;
     letter-spacing: 0.75px;
 }
 
 /* strength container */
-.strength-container{
+.strength-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.strength-container p{
+.strength-container p {
     font-size: 2.4rem;
 }
 
-.strength-container .indicator{
+.strength-container .indicator {
     width: 2.4rem;
     height: 2.4rem;
     border-radius: 50%;
@@ -277,7 +277,7 @@ button.copy-btn .copy-tooltip.active{
 }
 
 /* generate button */
-#generateButton{
+#generateButton {
     width: 100%;
     font-size: 2rem;
     font-weight: 600;
@@ -289,24 +289,26 @@ button.copy-btn .copy-tooltip.active{
     background-color: var(--vb-violet);
     text-transform: uppercase;
     letter-spacing: 0.1rem;
+    cursor: pointer;
+    /* Added Cursor */
 }
 
 
 /* media queries */
-@media (max-width: 450px){
-    .app-name{
+@media (max-width: 450px) {
+    .app-name {
         font-size: 2.5rem;
     }
 
-    .display-container{
+    .display-container {
         padding: 2rem 2.5rem 1.5rem;
     }
 
-    input.display{
+    input.display {
         font-size: 2rem;
     }
 
-    .slider::-webkit-slider-thumb{
+    .slider::-webkit-slider-thumb {
         width: 2.7rem;
         height: 2.7rem;
     }
@@ -325,31 +327,32 @@ button.copy-btn .copy-tooltip.active{
     }
 }
 
-@media (max-width: 390px){
-    .display-container{
+@media (max-width: 390px) {
+    .display-container {
         padding-left: 2rem;
         padding-right: 2rem;
     }
 
-    .input-container{
+    .input-container {
         padding-left: 2rem;
         padding-right: 2rem;
     }
 
-    input.display{
+    input.display {
         font-size: 1.6rem;
     }
 }
 
-@media (max-width: 350px){
-    .app-name{
+@media (max-width: 350px) {
+    .app-name {
         font-size: 2rem;
     }
+
     .checkbox-container label {
         font-size: 1.7rem;
     }
 
-    input.display{
+    input.display {
         font-size: 1.4rem;
     }
 
@@ -357,4 +360,3 @@ button.copy-btn .copy-tooltip.active{
         font-size: 1.7rem;
     }
 }
-
