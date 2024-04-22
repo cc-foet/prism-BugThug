@@ -135,6 +135,18 @@ function calcStrength(){
     }
 }
 
+// Call calcStrength function whenever a checkbox is checked or unchecked
+allCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+        calcStrength();
+    });
+});
+
+// Call calcStrength function whenever the password length is changed
+lengthSlider.addEventListener('input', () => {
+    calcStrength();
+});
+
 // Shuffle the array randomly - Fisher Yates algorithm
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
