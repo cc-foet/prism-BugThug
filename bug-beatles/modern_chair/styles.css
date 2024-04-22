@@ -88,19 +88,19 @@ label.first-color {
   background-image: url("./images/color1.jpg");
 }
 label.color-3 {
-  background-image: url("./images/color2.jpg");
-}
-label.color-5 {
   background-image: url("./images/color3.jpg");
 }
-label.color-6 {
-  background-image: url("./images/color4.jpg");
-}
-label.color-4 {
+label.color-5 {
   background-image: url("./images/color5.jpg");
 }
-label.color-2 {
+label.color-6 {
   background-image: url("./images/color6.jpg");
+}
+label.color-4 {
+  background-image: url("./images/color4.jpg");
+}
+label.color-2 {
+  background-image: url("./images/color2.jpg");
 }
 
 .img-wrap {
